@@ -15,14 +15,16 @@ PORT = 5010
 HOST = "127.0.0.1"
 
 # Kite Connect App settings. Go to https://developers.kite.trade/apps/
-# to create an app if you don't have one.
+# You will get the following details there i.e. developer credentials
+# Pls put the following in a separate encrypted environment file if you're using in production
+# if it is for yourself & for no-one else, then you can use as is
 kite_api_key = "xxxxxxxxxxxxxxxxxxxxx"
 kite_api_secret = "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"
 
-# Create a redirect url
+# Create a redirect url where the page will go to upon authentication of user from Kite
 redirect_url = "http://{host}:{port}/login".format(host=HOST, port=PORT)
 
-# Login url
+# Login url is the authentication page where you will have to enter your user credentials along with the developer's API key
 login_url = "https://api.kite.trade/connect/login?api_key={api_key}".format(api_key=kite_api_key)
 
 # Kite connect console url
@@ -36,7 +38,8 @@ index_template = """
     <div>Make sure your app with api_key - <b>{api_key}</b> has set redirect to <b>{redirect_url}</b>.</div>
     <div>If not you can set it from your <a href="{console_url}">Kite Connect developer console here</a>.</div>
     <a href="{login_url}"><h1>Login to generate access token.</h1></a>"""
-
+# You will have to take the access token from here and use it in your python script for making orders
+# Access tokens will expire after a certain point so either have to use a refresh token or re-login to generate new access_token
 login_template = """
     <h2 style="color: green">Success</h2>
     <div>Access token: <b>{access_token}</b></div>
